@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Actividades - Unidos Corazones</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Estilos propios -->
+    <link rel="stylesheet" th:href="@{/css/actividades.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" th:href="@{/inicio}">
+            <img th:src="@{/img/logo.png}" alt="Logo Unidos Corazones" height="60" class="me-2">
+        </a>
+
+        <!-- Botón hamburguesa -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menú -->
+        <nav class="collapse navbar-collapse justify-content-end" id="menu">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/inicio}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/nosotros}">Quiénes Somos</a></li>
+                <li class="nav-item"><a class="nav-link active fw-semibold" th:href="@{/actividades}">Actividades</a></li>
+            </ul>
+            <a th:href="@{/registro}" class="btn btn-success ms-lg-3">Registrarse</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- SECCIÓN DE ACTIVIDADES -->
+<section class="actividades-section py-5 mt-5">
+    <div class="container py-5 text-center">
+        <h2 class="fw-bold mb-4">Nuestras Actividades</h2>
+        <p class="mb-5">
+            Descubre algunas de las acciones que realizamos para apoyar a nuestras comunidades.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- Tarjetas generadas dinámicamente -->
+            <div class="col-md-4" th:each="campania : ${campanias}">
+                <div class="card activity-card h-100 shadow-sm border-0">
+                    <div class="activity-img">
+                        <img th:src="${campania.imagenUrl}" th:alt="${campania.titulo}" class="img-fluid rounded-top">
+                    </div>
+                    <div class="card-body text-start">
+                        <h5 class="card-title fw-bold" th:text="${campania.titulo}">Título de la campaña</h5>
+                        <p class="card-text" th:text="${campania.descripcion}">Descripción de la campaña...</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-white mt-5">
+    <div class="container py-4">
+        <div class="row align-items-center justify-content-between">
+
+            <!-- Columna izquierda -->
+            <div class="col-md-6 mb-4 mb-md-0 text-center text-md-start">
+                <h5 class="fw-bold">Unidos Corazones</h5>
+                <p class="mb-2">Comprometidos con el bienestar de miles de necesitados</p>
+                <a th:href="@{/admin}" class="btn btn-light btn-sm fw-bold">Administración</a>
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-4 text-md-end text-center">
+                <h6 class="fw-bold">Síguenos</h6>
+                <div class="social-icons mt-2">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
